@@ -13,3 +13,10 @@ ja:
         making: '制作中'
         preparing: '発送準備中'
         shipped: '発送済み' 
+    
+    order_detail:
+      making_status: 
+        disabled: '着手不可'
+        waiting: '制作待ち'
+        making: '制作中'
+        completed: '制作'

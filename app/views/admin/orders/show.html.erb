@@ -1,0 +1,73 @@
+<div class="container">
+  <h2>注文履歴詳細</h2>
+	<table class="table">
+	  <thead>
+      <tr>
+        <th>購入者</th>
+        <th>注文日</th>
+        <th>配送先</th>
+        <th>支払方法</th>
+        <th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @order.customer.last_name + @order.customer.first_name %></td>
+        <td><%= @order.created_at %></td>
+        <td>
+          〒<%= @order.ordered_postal_code + @order.ordered_address %></br>
+          <%= @order.ordered_name %>
+        </td>
+        <td><%= @order.payment_method %></td>
+        <div class="form-group">
+          <%= form_with model: @order, url: admin_order_path(@order.id),local:true do |f| %>
+          <%= f.select :order_id, options_from_collection_for_select(Order.all, :id, :ordered_status) {prompt: "--選択してください--"}, {class: "form-control-select"} %>
+          <%= f.submit "更新", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table">
+	  <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @order_details.each do |order_detail| %>
+        <td><%= @order_detail.item.name %></td>
+        <td><%= @order_detail.price.to_s(:delimited) %></td>
+        <td><%= @order_detail.amount %></td>
+        <td><%= @order_detail.subtotal %></td>
+        <div class="form-group">
+          <%= form_with model: @order_detail, url: admin_order_detail_path(@order_detail.id),local:true do |f| %>
+          <%= f.select :order_detail.id, options_from_collection_for_select(Order_detail.all, :id, :making_status) {prompt: "--選択してください--"}, {class: "form-control-select"} %>
+          <%= f.submit "更新", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table">
+	  <thead>
+      <tr>
+        <th>商品合計</th>
+        <th>送料</th>
+        <th>請求金額合計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @oreder.ammount_billed %></td>
+        <td><%= @order.shipping_fee %></td>
+        <td><%= @order.amount_billed + @order.shipping_fee %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
