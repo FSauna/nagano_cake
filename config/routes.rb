@@ -21,5 +21,9 @@ Rails.application.routes.draw do
     get '/' => "homes#top"
   end
   
+  scope :public do
+    root "homes#top"
+    get '/about' => "homes#about"
+  end
 
 end
