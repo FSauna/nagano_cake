@@ -6,11 +6,11 @@ Rails.application.routes.draw do
     registrations: 'admin/registrations'
   }
   
-    devise_for :customers, controllers: {
-      sessions:      'customers/sessions',
-      passwords:     'customers/passwords',
-      registrations: 'customers/registrations'
-    }
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+    registrations: 'customers/registrations'
+  }
     
   namespace :admin do
     resources :genres, only:[:index, :create, :edit, :update]
