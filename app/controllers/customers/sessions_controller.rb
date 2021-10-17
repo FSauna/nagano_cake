@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Customers::SessionsController < Devise::SessionsController
+  
+  before_action :reject_inactive_customer, only: [:create]
+  
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -25,13 +28,14 @@ class Customers::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
-  private
-    def after_sign_in_path_for(resource)
-      if resource.is_active == false
-        sign_out resource
-        root_path
-      else
-        root_path
+  def reject_inactive_user #退会済みユーザーのログイン拒否
+    @customer = Customer.find_by(email: params[:customer][:email])
+    if @cutomer
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
+        flash[:error] = "退会済みです。"
+        redirect_to customers_sign_up_path
       end
     end
+  end
+  
 end
