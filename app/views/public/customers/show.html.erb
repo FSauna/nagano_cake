@@ -1,0 +1,51 @@
+<div class="container my-5">
+    <div class="row">
+      <h2>マイページ</h2>
+    </div>
+    <div class="row my-3">
+      <strong class="px-3">登録情報</strong>
+      <%= link_to "編集する", customers_edit_path(@customer) ,class: "btn btn-success" %>
+	</div>
+	<table class="table table-striped">
+	  <tbody>
+     <tr>
+      <th>氏名</th>
+      <td>
+        <%= @customer.last_name %>
+        <%= @customer.first_name %>
+      </td>
+      </tr>
+      <tr>
+      <th>カナ</th>
+      <td>
+        <%= @customer.last_name_kana %>
+        <%= @customer.first_name_kana %>
+      </td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= @customer.postal_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+    </tbody>
+	</table>
+	<div class="row my-3">
+    <p class="pr-5 font-weight-bold">配送先</p>
+    <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %>
+	</div>
+	<div class="row my-3">
+	    <p class="pr-3 font-weight-bold">注文一覧</p>
+	    <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %>
+	</div>
+</div>
