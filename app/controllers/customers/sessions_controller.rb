@@ -28,7 +28,7 @@ class Customers::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
-  def reject_inactive_user #退会済みユーザーのログイン拒否
+  def reject_inactive_customer #退会済みユーザーのログイン拒否
     @customer = Customer.find_by(email: params[:customer][:email])
     if @cutomer
       if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
