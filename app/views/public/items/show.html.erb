@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row mt-4">
+	  <div class="col-md-4">
+  	  <div class ="offset-sm-1 col-sm-3">
+        <%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %>
+      </div>
+      <div class="col-md-5">
+        <strong><%= @item.name %></strong>
+        <div>
+          <%= @item.introduction %>
+        </div>
+        <strong>￥<%= @item.with_tax_price.to_s(:delimited) %></strong> (税込み)
+        <div class="form-group">
+          <%= form_with model: @item, url: item_path, local:true do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :amount, *[1..10],include_blank: "個数を選択" %>
+          <%= f.submit'カートに入れる' ,class: 'btn btn-success' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
