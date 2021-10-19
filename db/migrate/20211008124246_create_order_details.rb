@@ -6,8 +6,8 @@ class CreateOrderDetails < ActiveRecord::Migration[5.2]
       t.integer :price,       null: false, default: ""
       t.integer :amount,      null: false, default: ""
       t.integer :make_status, null: false, default: 0
-      t.datetime :created_at, null: false, default: now
-      t.datetime :updated_at, null: false, default: now
+      t.datetime :created_at, null: false
+      t.datetime :updated_at, null: false
 
       t.timestamps
     end

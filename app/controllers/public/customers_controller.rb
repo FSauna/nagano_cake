@@ -9,9 +9,13 @@ class Public::CustomersController < ApplicationController
   end
   
   def update
-    @cutomer = current_customer
-    @customer.update(customer_params)
-    redirect_to customers_my_page_path(@customer)
+    @customer = current_customer
+    if @customer.update(customer_params)
+       flash[:notice] = "You have updated data successfully."
+       redirect_to customers_my_page_path(@customer)
+    else
+       render :edit
+    end
   end
   
   def unsubscribe

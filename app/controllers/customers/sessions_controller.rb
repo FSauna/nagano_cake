@@ -29,11 +29,11 @@ class Customers::SessionsController < Devise::SessionsController
   # end
   
   def reject_inactive_customer #退会済みユーザーのログイン拒否
-    @customer = Customer.find_by(email: params[:customer][:email])
-    if @cutomer
+    @customer = Customer.find_by(email: params[:customer][:email].downcase)
+    if @customer
       if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
         flash[:error] = "退会済みです。"
-        redirect_to customers_sign_up_path
+        redirect_to new_customer_registration_path
       end
     end
   end

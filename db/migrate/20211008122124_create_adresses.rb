@@ -5,8 +5,8 @@ class CreateAdresses < ActiveRecord::Migration[5.2]
       t.string :name,         null: false, default: ""
       t.string :postal_code,  null: false, default: ""
       t.string :address,      null: false, default: ""
-      t.datetime :created_at, null: false, default: now
-      t.datetime :updated_at, null: false, default: now
+      t.datetime :created_at, null: false
+      t.datetime :updated_at, null: false
 
       t.timestamps
     end
