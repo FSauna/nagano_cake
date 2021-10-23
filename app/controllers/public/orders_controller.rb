@@ -1,7 +1,9 @@
 class Public::OrdersController < ApplicationController
   
   def new
-    @order = Order.find(params[:id])
+    @order = Order.new
+    @order.customer_id = current_customer.id
+    @addresses = current_customer.addresses
   end
   
   def confirm
@@ -10,20 +12,20 @@ class Public::OrdersController < ApplicationController
     @order.shipping_cost = 800
 
     if params[:order][:select_address] == "0" #ご自身の住所
-       @order.postal_code = current_customer.postal_code
-       @order.address = current_customer.address
-       @order.name = current_customer.last_name + current_customer.first_name
+       @order.ordered_postal_code = current_customer.postal_code
+       @order.ordered_address = current_customer.address
+       @order.ordered_name = current_customer.last_name + current_customer.first_name
 
     elsif params[:order][:select_address] == "1" #登録済み住所
        @address = Address.find(params[:order][:address_id])
-       @order.postal_code = @address.postal_code
-       @order.address = @address.address
-       @order.name = @address.name
+       @order.ordered_postal_code = @address.postal_code
+       @order.ordered_address = @address.address
+       @order.ordered_name = @address.name
 
     elsif params[:order][:select_address] == "2" #新しいお届け先
-       @order.postal_code = params[:order][:postal_code]
-       @order.address = params[:order][:address]
-       @order.name = params[:order][:name]
+       @order.ordered_postal_code = params[:order][:ordered_postal_code]
+       @order.ordered_address = params[:order][:ordered_address]
+       @order.ordered_name = params[:order][:ordered_name]
     end
   end
   
@@ -55,8 +57,7 @@ class Public::OrdersController < ApplicationController
   
   private
   def order_params
-      params.require(:order).permit(:order_id, :payment_method, :ordered_postal_code, :ordered_adresses, :ordered_name)
+      params.require(:order).permit(:payment_method, :ordered_postal_code, :ordered_adress, :ordered_name, :amount_billed, :customer_id)
   end
-
   
 end
