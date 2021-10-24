@@ -2,7 +2,7 @@
   <div class="row">
     <h2>注文情報入力</h2>
   </div>
-    <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+    <%= form_with model: @order, url: orders_confirm_path(@order.id), local: true do |f| %>
     <div class="form-check mt-3 w-100">
       <h4><strong>支払方法</strong></h4>
       <div class="ml-3">

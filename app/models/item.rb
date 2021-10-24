@@ -9,4 +9,6 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
   
+  validates :is_active, inclusion: {in: [true, false]}
+  
 end
