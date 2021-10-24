@@ -29,7 +29,8 @@
       </table>
     </div>
     
-    <div class="col-7">
+  <div class="row mt-3">
+    <div class="col-8">
       <strong>注文内容</strong>
       <table class="table table-hover table-bordered col-8 table-sm">
         <thead>
@@ -47,7 +48,7 @@
             <td><%= order_detail.item.name %></td>
             <td><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= order_detail.item.subtotal.to_s(:delimited) %></td>
+            <td><%= order_detail.subtotal.to_s(:delimited) %></td>
           </tr>
           <% @sum += order_detail.subtotal %>
           <% end %>
@@ -55,7 +56,7 @@
       </table>
     </div>
     
-    <div class="col-3">
+    <div class="col-4">
       <strong>請求情報</strong>
       <table class="table table-hover table-bordered col-8 table-sm">
         <thead>
@@ -77,5 +78,5 @@
         </tbody>
       </table>
     </div>
-    
+  </div>
 </div>
