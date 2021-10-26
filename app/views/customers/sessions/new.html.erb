@@ -1,22 +1,21 @@
 <div class="container">
   <h2>ログイン</h2>
-    <h5>会員の方はこちらからログイン</h5>
-      <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
-      <div class="field">
-        <%= f.label :メールアドレス %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "sample@example.com" %>
-      </div>
-      <div class="field">
-        <%= f.label :パスワード %><br />
-        <%= f.password_field :password %>
-      </div>
-      <div class="actions">
-        <%= f.submit "ログイン" ,class: "btn btn-primary" %>
-      </div>
+  <h5>会員の方はこちらからログイン</h5>
+    <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+    <div class="field">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "sample@example.com" %>
+    </div>
+    <div class="field">
+      <%= f.label :パスワード %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div class="actions">
+      <%= f.submit "ログイン" ,class: "btn btn-primary" %>
+    </div>
     <% end %>
-    <div>
+  <div>
     <h5>会員登録がお済みでない方</h5>
     <h5><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</h5>
-    </div>
-  <%= render "customers/shared/links" %>
+  </div>
 </div>

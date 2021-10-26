@@ -1,28 +1,30 @@
-<div class="container ">
-  	<h2>商品詳細</h2>
-  	<div class="row mt-3">
-  	  <div class ="offset-sm-1 col-sm-3">
-        <%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %>
+<div class="container">
+	<h2>商品詳細</h2>
+  	<div class="row mt-3 mx-auto">
+  	  <div class ="col-md-3 offset-md-1">
+        <%= attachment_image_tag @item, :image, format: 'jpeg', size: "250x200", fallback: "no_image.jpg" %>
       </div>
-      <table class="table">
-    	  <div class="d-flex flex-column bd-highlight mb-3">
-      	  <thead>
-            <tr>
-              <th>商品名</th>
-              <th>商品説明</th>
-              <th>ジャンル</th>
-              <th>税込価格(税抜価格)</th>
-              <th>販売ステータス</th>
-            </tr>
-          </thead>
-        </div>
-        <div class="d-flex flex-column bd-highlight mb-3">
+      <div class="col-md-6">
+        <table class="table table-borderless">
           <tbody>
             <tr>
+              <th>商品名</th>
               <td><%= @item.name %></td>
+            </tr>
+            <tr>
+              <th>商品説明</th>
               <td><%= @item.introduction %></td>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
               <td><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+              <th>税込価格(税抜価格)</th>
               <td><%= @item.with_tax_price.to_s(:delimited) %>(<%= (@item.price).to_s(:delimited) %>)円</td>
+            </tr>
+            <tr>
+              <th>販売ステータス</th>
               <td>
                 <% if @item.is_active == true %>
                   販売中
@@ -32,10 +34,10 @@
               </td>
             </tr>
           </tbody>
+        </table>
+        <div class="text-center">
+          <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
         </div>
-      </table>
-      <div class="row">
-        <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
       </div>
     </div>
 </div>

@@ -6,7 +6,7 @@
     <strong class="px-3">登録情報</strong>
     <%= link_to "編集する", customers_edit_path(@customer) ,class: "btn btn-success" %>
   </div>
-	<table class="table table-striped">
+	<table class="table table-bordered">
 	  <tbody>
      <tr>
       <th>氏名</th>
@@ -41,11 +41,11 @@
     </tbody>
 	</table>
 	<div class="row my-3">
-    <p class="pr-5 font-weight-bold">配送先</p>
-    <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %>
+    <p class="font-weight-bold">配送先</p>
+    <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary ml-5" %>
 	</div>
 	<div class="row my-3">
-    <p class="pr-3 font-weight-bold">注文一覧</p>
-    <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %>
+    <p class="mr-3 font-weight-bold">注文一覧</p>
+    <%= link_to "一覧を見る", orders_path, class: "btn btn-primary ml-3" %>
 	</div>
 </div>

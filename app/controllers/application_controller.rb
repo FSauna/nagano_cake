@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery with: :null_session #CSRF対策
 
     def after_sign_in_path_for(resource)
       if resource.is_a?(Admin)
@@ -10,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
 
 
-    def after_sign_out_path_for(resource)
+    def after_sign_out_path_for(resources)
       if resources == :admin
         new_admin_session_path
       else
