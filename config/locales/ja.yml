@@ -15,4 +15,4 @@ ja:
         disabled: '着手不可'
         waiting: '制作待ち'
         making: '制作中'
-        completed: '制作'
+        completed: '制作完了'

@@ -8,20 +8,21 @@
       <tbody>
         <tr>
           <td>郵便番号（ハイフンなし）</td>
-          <td><%= f.text_field :postal_code, placeholder:"0000000", class:"form_width" %></td>
+          <td><%= f.text_field :postal_code, placeholder:"0000000", class: "form-control" %></td>
         </tr>
         <tr>
           <td>住所</td>
-          <td><%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0", class:"form_address" %></td>
+          <td><%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0", class: "form-control" %></td>
         </tr>
         <tr>
           <td>宛名</td>
-          <td><%= f.text_field :name, placeholder:"令和道子", class:"form_width" %></td>
+          <td><%= f.text_field :name, placeholder:"令和道子", class: "form-control" %></td>
         </tr>
       </tbody>
     </table>
     <%= f.submit'新規登録',class: 'btn btn-success' %>
     <% end %>
+    
     <table class="table table-bordered mt-5">
       <thead>
         <tr>
