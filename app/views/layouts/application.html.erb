@@ -8,95 +8,73 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
+  
+  <body class="d-flex flex-column vh-100">
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;" >
         <div class="container">
-          <a class="navbar-brand" href="/"><span>ながのCAKE</span></a>
-          <!-- 管理者の場合 -->
-          <% if admin_signed_in? %> 
-          <ul class="navbar-nav ml-auto">
-            <li class="navitem">
-            <%= link_to admin_items_path do %>
-            <p id="navitem"><i class="fas fa-home">　商品一覧</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to admin_customers_path do %>
-            <p id="navitem"><i class="fas fa-home">　会員一覧</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to admin_path do %>
-            <p id="navitem"><i class="fas fa-home">　注文履歴一覧</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to admin_genres_path do %>
-            <p id="navitem"><i class="fas fa-home">　ジャンル一覧</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to destroy_admin_session_path, method: :delete do %>
-            <p id="navitem"><i class="fas fa-home">　ログアウト</i></p>
-            <% end %>
-            </li>
-          </ul>
-          <!-- 会員の場合 -->
-          <% elsif customer_signed_in? %> 
-          <span class="u h7 text-white strong">
-            ようこそ、<%= current_customer.last_name %>さん！
-          </span>
-          <ul class="navbar-nav ml-auto">
-            <li class="navitem">
-            <%= link_to customers_my_page_path do %>
-            <p id="navitem"><i class="fas fa-home">　マイページ</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to items_path do %>
-            <p id="navitem"><i class="fas fa-home">　商品一覧</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to cart_items_path do %>
-            <p id="navitem"><i class="fas fa-home">　カート</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to destroy_customer_session_path, method: :delete do %>
-            <p id="navitem"><i class="fas fa-home">　ログアウト</i></p>
-            <% end %>
-            </li>
-          </ul>
-          <% else %>
-          <!--ログイン前画面-->
-          <ul class="navbar-nav ml-auto">
-            <li class="navitem">
-            <%= link_to about_path do %>
-            <p id="navitem"><i class="fas fa-home">　About</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to items_path do %>
-            <p id="navitem"><i class="fas fa-home">　商品一覧</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to new_customer_registration_path do %>
-            <p id="navitem"><i class="fas fa-home">　新規登録</i></p>
-            <% end %>
-            </li>
-            <li class="navitem">
-            <%= link_to new_customer_session_path do %>
-            <p id="navitem"><i class="fas fa-home">　ログイン</i></p>
-            <% end %>
-            </li>
-          </ul>
-          <% end %>
+          <a class="navbar-brand" href="/"><span>LOGO</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+               <!--adminログイン後-->
+              <% if admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "商品一覧", admin_items_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "会員一覧", admin_customers_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "注文履歴一覧", admin_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+                </li>
+               <!--customerログイン後-->
+              <% elsif customer_signed_in? %>
+                <span class="offset- strong">ようこそ、<%= current_customer.last_name %>さん！</span>
+                <li class="nav-item">
+                  <%= link_to "マイページ", customers_my_page_path(current_customer.id), class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "商品一覧", items_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "カート", cart_items_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link' %>
+                </li>
+              <!--ログイン前-->
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "About", about_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "商品一覧", items_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_customer_session_path, class: 'nav-link' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
 </html>
